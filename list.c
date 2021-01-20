@@ -45,3 +45,16 @@ void reverseList(list* l) {
         *(l->array+(l->stack-i-1)) = temp;
     }
 }
+
+// the following function is intended to work iff every elements in list has 1 digit
+void multiply(list* l, int val) {
+    reverseList(l);
+    int carry = 0;
+    for(int i = 0; i < l->stack; i++) {
+        int product = *(l->array+i) * val + carry;
+        carry = product / 10;
+        *(l->array+i) = product % 10;
+    }
+    if (carry != 0) do appendElement(l, carry % 10); while((carry/=10) != 0);
+    reverseList(l);
+}

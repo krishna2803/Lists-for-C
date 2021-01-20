@@ -14,5 +14,6 @@ void appendElement(list* l, int e);
 void appendIndex(list* l, int index, int e);
 void removeIndex(list* l, int index);
 void reverseList(list* l);
+void multiply(list* l, int val);
 
 #endif
