@@ -30,7 +30,6 @@ void printList(list l) {
 void appendElement(list* l, int e) {
     if (l->stack == l->size) l->array = (int*) realloc(l->array, (l->size *= 2) * sizeof(int));
     *(l->array+(l->stack++)) = e;
-    // printf("stack = %d, size = %d\n", l->stack, l->size);
 }
 
 void removeIndex(list* l, int index) {
@@ -38,4 +37,21 @@ void removeIndex(list* l, int index) {
     for(int i = index; i < l->size - 1; i++) l->array[i] = l->array[i+1];
     l->array[l->size-1] = 0;
     l->stack--;
+}
+
+void reverseList(list* l) {
+    if (l->stack & 1) {
+        for(int i = 0; i < l->stack >> 1; i++) {
+            int temp = *(l->array+i);
+            *(l->array+i) = *(l->array+(l->stack-i-1));
+            *(l->array+(l->stack-i-1)) = temp;
+        }
+    }
+    else {
+        for(int i = 0; i < l->stack >> 1; i++) {
+            int temp = *(l->array+i);
+            *(l->array+i) = *(l->array+(l->stack-i-1));
+            *(l->array+(l->stack-i-1)) = temp;
+        }
+    }
 }
