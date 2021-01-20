@@ -36,7 +36,6 @@ void appendIndex(list* l, int index, int e) {
     *(l->array+index) =  e;
 }
 
-
 void removeIndex(list* l, int index) {
     if (index < 0 || index >= l->size) return;
     for(int i = index; i < l->size - 1; i++) l->array[i] = l->array[i+1];
@@ -46,18 +45,9 @@ void removeIndex(list* l, int index) {
 
 void reverseList(list* l) {
     if (l->stack <= 0) return;
-    if (l->stack & 1) {
-        for(int i = 0; i < l->stack >> 1; i++) {
-            int temp = *(l->array+i);
-            *(l->array+i) = *(l->array+(l->stack-i-1));
-            *(l->array+(l->stack-i-1)) = temp;
-        }
-    }
-    else {
-        for(int i = 0; i < l->stack >> 1; i++) {
-            int temp = *(l->array+i);
-            *(l->array+i) = *(l->array+(l->stack-i-1));
-            *(l->array+(l->stack-i-1)) = temp;
-        }
+    for(int i = 0; i < l->stack >> 1; i++) {
+        int temp = *(l->array+i);
+        *(l->array+i) = *(l->array+(l->stack-i-1));
+        *(l->array+(l->stack-i-1)) = temp;
     }
 }
